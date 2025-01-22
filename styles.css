@@ -13,7 +13,27 @@ body {
   padding: 0;
 }
 
-.navBar
+/* every screen to center */
+main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+footer{
+  position:absolute;
+  align-items: center;
+  justify-content: center;
+  bottom:0;
+  width:100%;
+}
+
+.navBar{
+  position: fixed;
+  
+}
 
 .navBar button{
     background-color: #353535;
