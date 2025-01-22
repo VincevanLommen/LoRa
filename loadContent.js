@@ -1,28 +1,43 @@
-async function loadContent(url, targetElementId) {
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.text();
-        const targetElement = document.getElementById(targetElementId);
-        targetElement.innerHTML = data;
-
-         // Extract all script tags from the loaded content:
-        const scripts = Array.from(targetElement.querySelectorAll("script"));
-
-       // Create and append new script tags to the page:
-        scripts.forEach(script => {
-           const newScript = document.createElement('script');
-            if(script.src){
-              newScript.src = script.src;
-            }else{
-              newScript.textContent = script.textContent;
-            }
-          targetElement.parentNode.appendChild(newScript);
-        });
-    } catch (error) {
-        console.error(`Could not load content from ${url}:`, error);
-    }
-}
-loadContent('navBar.html', 'navBar-placeholder');
+document.addEventListener("DOMContentLoaded", function() {
+    fetch('/api/historical-data')
+        .then(response => response.json())
+        .then(data => {
+            const ctx = document.getElementById('historical-graphs').getContext('2d');
+            const chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: data.timestamps,
+                    datasets: [{
+                        label: 'Temperatuur',
+                        data: data.temperature,
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    }, {
+                        label: 'Luchtvochtigheid',
+                        data: data.humidity,
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }, {
+                        label: 'Grondvochtigheid',
+                        data: data.soilMoisture,
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            type: 'time',
+                            time: {
+                                unit: 'day'
+                            }
+                        },
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        })
+        .catch(error => console.error('Error fetching historical data:', error));
+});
