@@ -24,26 +24,28 @@ main{
 
 footer{
   position:absolute;
-  align-items: center;
-  justify-content: center;
   bottom:0;
   width:100%;
 }
 
 .navBar{
   position: fixed;
-  
+  top: 0px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.navBar button{
-    background-color: #353535;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
+.navBarButtons > button{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 15px;
+  width: auto;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
 }
 
 /* topbar line */
