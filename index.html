@@ -1,16 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Actuele Data - LoRa Project</title>
     <link rel="stylesheet" href="./styles.css">
-    <script src="./loadData.js" defer></script>
+    <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+    <script src="./mqtt-client.js"></script>
 </head>
-
 <body>
-    <header id="navBar-placeholder"></header>
+    <header class="navButton">
+        <div class="geschButton">
+            <a href="geschiedenis.html"><button>
+                <span>Geschiedenis</span>
+            </button></a>
+        </div>
+        <div class="topbar">
+            <div></div>
+        </div>
+    </header>
     <main>
         <section id="data-overview">
             <h2>Actuele Data</h2>
@@ -20,7 +28,6 @@
                 <p>Grondvochtigheid: <span id="soil-moisture-value">N/A</span>%</p>
             </div>
         </section>
-
         <section id="data-graphs">
             <h2>Grafische Weergave</h2>
             <div id="graphs">
@@ -28,10 +35,8 @@
             </div>
         </section>
     </main>
-
     <footer>
         <p>&copy; 2025 LoRa Project VincevanLommen & WoutVVD & E-Wouter & Japser</p>
     </footer>
 </body>
-
 </html>
