@@ -11,11 +11,10 @@ document.addEventListener("DOMContentLoaded", function() {
         const data = JSON.parse(message.toString());
         console.log('Message arrived:', data);
 
-        flush();
-
         // Update HTML elements with the received data
         document.getElementById('temp-value').textContent = data.temperature !== undefined ? data.temperature : 'N/A';
         document.getElementById('humidity-value').textContent = data.humidity !== undefined ? data.humidity : 'N/A';
         document.getElementById('soil-moisture-value').textContent = data.soilMoisture !== undefined ? data.soilMoisture : 'N/A';
+        document.getElementById('rain-value').textContent = data.rain !== undefined ? data.rain : 'N/A';
     });
 });
