@@ -1,3 +1,5 @@
+//V2
+
 document.addEventListener("DOMContentLoaded", function() {
     // Connect to MQTT broker
     const client = mqtt.connect('ws://192.168.0.103:9001');
@@ -10,6 +12,8 @@ document.addEventListener("DOMContentLoaded", function() {
     client.on('message', function(topic, message) {
         const data = JSON.parse(message.toString());
         console.log('Message arrived:', data);
+
+        flush();
 
         // Update HTML elements with the received data
         document.getElementById('temp-value').textContent = data.temperature !== undefined ? data.temperature : 'N/A';
