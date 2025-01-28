@@ -5,15 +5,15 @@ error_reporting(E_ALL);
 
 echo "PHP script gestart<br>";
 
-$servername = "192.168.0.103";  // Gebruik het IP-adres van de database
-$username = "RW";  // Gebruik de inloggegevens van localhost
-$password = "RW";
+$servername = "192.168.0.103";
+$username = "ReadWrite";
+$password = "ReadWrite";
 $dbname = "LoRa";
 
-// Create connection
+// Maak verbinding met de database
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
+// Controleer de verbinding
 if ($conn->connect_error) {
     die("Verbinding mislukt: " . $conn->connect_error);
 }
@@ -30,7 +30,7 @@ if (json_last_error() !== JSON_ERROR_NONE) {
     $regen = $data['rain'];
     $grondVocht = $data['soilMoisture'];
 
-    $sql = "INSERT INTO Data (Temp, Vocht, Regen, GrondVocht) VALUES ('$temp', '$vocht', '$regen', '$grondVocht')";
+    $sql = "INSERT INTO `LoRa` (Datum, Temp, Vocht, Regen, GrondVocht) VALUES (NOW(), '$temp', '$vocht', '$regen', '$grondVocht')";
 
     if ($conn->query($sql) === TRUE) {
         echo "Nieuw record succesvol toegevoegd";
