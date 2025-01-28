@@ -5,7 +5,7 @@
     --button-color: #4b4b4b;
   }
 
-/*|| HEADING */
+/*|| GENERAL */
 
 /*body*/
 body {
@@ -24,6 +24,7 @@ main{
   align-items: center;
   justify-content: center;
   width: 100%;
+  margin-top: -10px;
 }
 
 /*copyright stuff*/
@@ -42,7 +43,6 @@ footer{
   align-items: center;
   justify-content: center;
   padding-top: 5px;
-  padding-bottom: 5px;
 }
 
 /*button to go to other page*/
@@ -68,3 +68,5 @@ footer{
   background-color: var(--accent-color);
   margin-bottom: 5px;
 }
+
+/*||  */
