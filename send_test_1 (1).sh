@@ -21,8 +21,9 @@ while true; do
     temperature=$(generate_random_value 15 30)
     humidity=$(generate_random_value 30 70)
     soil_moisture=$(generate_random_value 20 50)
+    rain=$(generate_random_value 0 10)
 
-    payload="{\"temperature\": $temperature, \"humidity\": $humidity, \"soilMoisture\": $soil_moisture}"
+    payload="{\"temperature\": $temperature, \"humidity\": $humidity, \"rain\": $rain, \"soilMoisture\": $soil_moisture}"
     echo "Sending => $payload"
     mosquitto_pub -h $HOST -t $TOPIC -m "$payload"
     sleep $SLEEP

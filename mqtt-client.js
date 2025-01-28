@@ -1,5 +1,3 @@
-//V2
-
 document.addEventListener("DOMContentLoaded", function() {
     // Connect to MQTT broker
     const client = mqtt.connect('ws://192.168.0.103:9001');

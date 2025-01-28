@@ -69,4 +69,10 @@ footer{
   margin-bottom: 5px;
 }
 
-/*||  */
+/*||main title  */
+
+.Title h2{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
