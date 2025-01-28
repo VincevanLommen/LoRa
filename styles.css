@@ -5,6 +5,8 @@
     --button-color: #4b4b4b;
   }
 
+/*|| HEADING */
+
 /*body*/
 body {
   font-family: 'Roboto', sans-serif;
@@ -24,12 +26,16 @@ main{
   width: 100%;
 }
 
+/*copyright stuff*/
 footer{
   position:absolute;
   bottom:0;
   width:100%;
 }
 
+/*|| HEADING */
+
+/*button + line*/
 .navButton{
   display: flex;
   flex-direction: column;
@@ -39,22 +45,19 @@ footer{
   padding-bottom: 5px;
 }
 
+/*button to go to other page*/
 .navButton button{
   display: inline-flex;
   padding: 5px;
   width: auto;
   font-size: 16px;
+  border-style: solid;
   border-radius: 50px;
   cursor: pointer;
   text-align: center;
   align-items: center;
   margin: 3px;
   background-color: var(--background-color);
-}
-
-.home-graph-container button:hover {
-  border-style: outset;
-  border-color: var(--button-color);
 }
 
 /* topbar line */
