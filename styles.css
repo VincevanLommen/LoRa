@@ -92,4 +92,7 @@ footer{
   border-radius: 50px;
   border-color: var(--accent-color);
   
+  padding: 15px;
+
+  margin-bottom: 25px;
 }
