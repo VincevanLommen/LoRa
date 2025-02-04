@@ -101,5 +101,5 @@ footer{
   border-color: var(--accent-color);
   padding: 15px;
   margin-top: 25px;
-  border-spacing: 550px;
+  width: 600px;
 }

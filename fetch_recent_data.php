@@ -14,26 +14,9 @@ if ($conn->connect_error) {
     die("Verbinding mislukt: " . $conn->connect_error);
 }
 
-$range = $_GET['range'];
-$sql = "";
-
-switch ($range) {
-    case '24hr':
-        $sql = "SELECT * FROM `LoRa` WHERE Datum >= NOW() - INTERVAL 1 DAY";
-        break;
-    case 'week':
-        $sql = "SELECT * FROM `LoRa` WHERE Datum >= NOW() - INTERVAL 1 WEEK";
-        break;
-    case 'month':
-        $sql = "SELECT * FROM `LoRa` WHERE Datum >= NOW() - INTERVAL 1 MONTH";
-        break;
-    default:
-        echo json_encode([]);
-        $conn->close();
-        exit;
-}
-
+$sql = "SELECT * FROM `LoRa` WHERE Datum >= NOW() - INTERVAL 1 DAY ORDER BY Datum ASC";
 $result = $conn->query($sql);
+
 if ($result === false) {
     echo json_encode(['error' => 'Query failed']);
     $conn->close();
