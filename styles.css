@@ -79,8 +79,11 @@ footer{
 
 .Title .timeSelect{
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  align-self: center;
+  flex-direction: row;
+  padding: 5px;
+  width: auto;
+  border-radius: 25px;
 }
 
 /*||history title  */

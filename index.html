@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./styles.css">
     <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0"></script>
     <script src="./mqtt-client.js"></script>
     <script src="./fetch-historical-data.js"></script>
 </head>
@@ -23,6 +24,7 @@
             <div></div>
         </div>
     </header>
+
     <main>
         <section id="data-overview" class="Title">
             <h2>Actuele Data</h2>
@@ -33,17 +35,24 @@
                 <p>Regen: <span id="rain-value">N/A</span>mm</p>
             </div>
         </section>
+
         <section id="data-graphs" class="Title">
             <h2>Grafische Weergave</h2>
             <div id="graphs">
                 <canvas id="temperatureChart" width="400" height="200"></canvas>
                 <canvas id="humidityChart" width="400" height="200"></canvas>
                 <canvas id="soilMoistureChart" width="400" height="200"></canvas>
-                <h3>Extra Grafiek</h3>
+            </div>
+        </section>
+
+        <section id="extra-graph" class="Title">
+            <h2>Extra Grafiek</h2>
+            <div id="extra-chart-container">
                 <canvas id="extraChart" width="400" height="200"></canvas>
             </div>
         </section>
     </main>
+
     <footer>
         <p>&copy; 2025 LoRa Project VincevanLommen & WoutVVD & E-Wouter & Japser</p>
     </footer>
