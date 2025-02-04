@@ -91,8 +91,15 @@ footer{
   border-style: solid;
   border-radius: 50px;
   border-color: var(--accent-color);
-  
   padding: 15px;
-
   margin-bottom: 25px;
+}
+
+.Title .titleBlock{
+  border-style: solid;
+  border-radius: 50px;
+  border-color: var(--accent-color);
+  padding: 15px;
+  margin-top: 25px;
+  border-spacing: 550px;
 }
