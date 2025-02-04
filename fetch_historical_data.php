@@ -14,28 +14,35 @@ if ($conn->connect_error) {
     die("Verbinding mislukt: " . $conn->connect_error);
 }
 
-// Query om data van de laatste 24 uur op te halen
-$sql = "SELECT * FROM `LoRa` WHERE Datum >= NOW() - INTERVAL 1 DAY";
+$range = $_GET['range'];
+$sql = "";
+
+switch ($range) {
+    case '24hr':
+        $sql = "SELECT * FROM `LoRa` WHERE Datum >= NOW() - INTERVAL 1 DAY";
+        break;
+    case 'week':
+        $sql = "SELECT * FROM `LoRa` WHERE Datum >= NOW() - INTERVAL 1 WEEK";
+        break;
+    case 'month':
+        $sql = "SELECT * FROM `LoRa` WHERE Datum >= NOW() - INTERVAL 1 MONTH";
+        break;
+    default:
+        echo json_encode([]);
+        $conn->close();
+        exit;
+}
+
 $result = $conn->query($sql);
-$data_24hr = $result->fetch_all(MYSQLI_ASSOC);
+if ($result === false) {
+    echo json_encode(['error' => 'Query failed']);
+    $conn->close();
+    exit;
+}
 
-// Query om data van de laatste week op te halen
-$sql = "SELECT * FROM `LoRa` WHERE Datum >= NOW() - INTERVAL 1 WEEK";
-$result = $conn->query($sql);
-$data_week = $result->fetch_all(MYSQLI_ASSOC);
+$data = $result->fetch_all(MYSQLI_ASSOC);
 
-// Query om data van de laatste maand op te halen
-$sql = "SELECT * FROM `LoRa` WHERE Datum >= NOW() - INTERVAL 1 MONTH";
-$result = $conn->query($sql);
-$data_month = $result->fetch_all(MYSQLI_ASSOC);
-
-$response = [
-    'last_24_hours' => $data_24hr,
-    'last_week' => $data_week,
-    'last_month' => $data_month
-];
-
-echo json_encode($response);
+echo json_encode($data);
 
 $conn->close();
 ?>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +9,9 @@
     <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="./mqtt-client.js"></script>
+    <script src="./fetch-historical-data.js"></script>
 </head>
+
 <body>
     <header class="navButton">
         <div class="geschButton">
@@ -36,6 +39,8 @@
                 <canvas id="temperatureChart" width="400" height="200"></canvas>
                 <canvas id="humidityChart" width="400" height="200"></canvas>
                 <canvas id="soilMoistureChart" width="400" height="200"></canvas>
+                <h3>Extra Grafiek</h3>
+                <canvas id="extraChart" width="400" height="200"></canvas>
             </div>
         </section>
     </main>
@@ -43,4 +48,5 @@
         <p>&copy; 2025 LoRa Project VincevanLommen & WoutVVD & E-Wouter & Japser</p>
     </footer>
 </body>
+
 </html>

@@ -2,11 +2,6 @@ document.addEventListener("DOMContentLoaded", function() {
     // Connect to MQTT broker
     const client = mqtt.connect('ws://192.168.0.103:9001');
 
-    let lastTemp = 'N/A';
-    let lastHumidity = 'N/A';
-    let lastSoilMoisture = 'N/A';
-    let lastRain = 'N/A';
-
     client.on('connect', function() {
         console.log('Connected to MQTT broker');
         client.subscribe('LoRa/readings');
@@ -16,26 +11,19 @@ document.addEventListener("DOMContentLoaded", function() {
         const data = JSON.parse(message.toString());
         console.log('Message arrived:', data);
 
-        // Update HTML elements with the received data
-        if (data.temperature !== undefined) {
-            lastTemp = data.temperature;
+        // Update HTML elements with the received data (if exists)
+        if (document.getElementById('temp-value')) {
+            document.getElementById('temp-value').textContent = data.temperature !== undefined ? data.temperature : 'N/A';
         }
-        document.getElementById('temp-value').textContent = lastTemp;
-
-        if (data.humidity !== undefined) {
-            lastHumidity = data.humidity;
+        if (document.getElementById('humidity-value')) {
+            document.getElementById('humidity-value').textContent = data.humidity !== undefined ? data.humidity : 'N/A';
         }
-        document.getElementById('humidity-value').textContent = lastHumidity;
-
-        if (data.soilMoisture !== undefined) {
-            lastSoilMoisture = data.soilMoisture;
+        if (document.getElementById('soil-moisture-value')) {
+            document.getElementById('soil-moisture-value').textContent = data.soilMoisture !== undefined ? data.soilMoisture : 'N/A';
         }
-        document.getElementById('soil-moisture-value').textContent = lastSoilMoisture;
-
-        if (data.rain !== undefined) {
-            lastRain = data.rain;
+        if (document.getElementById('rain-value')) {
+            document.getElementById('rain-value').textContent = data.rain !== undefined ? data.rain : 'N/A';
         }
-        document.getElementById('rain-value').textContent = lastRain;
 
         // Send data to PHP script to save in database
         fetch('save_data.php', {

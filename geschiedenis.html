@@ -26,10 +26,16 @@
     <main>
         <div id="historical-data" class="Title">
             <h2>Historische Waarden</h2>
-            <div id="historical-graphs">
-                <canvas id="chart-24hr" width="400" height="200"></canvas>
-                <canvas id="chart-week" width="400" height="200"></canvas>
-                <canvas id="chart-month" width="400" height="200"></canvas>
+            <div>
+                <label for="data-range">Kies Data Range:</label>
+                <select id="data-range" class="timeSelect">
+                    <option value="24hr">Laatste 24 uur</option>
+                    <option value="week">Actuele Week</option>
+                    <option value="month">Actuele Maand</option>
+                </select>
+            </div>
+            <div id="historical-graphs" class="graphs">
+                <canvas id="chart" width="1200" height="500"></canvas>
             </div>
         </div>
     </main>
