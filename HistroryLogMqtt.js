@@ -17,10 +17,6 @@ document.addEventListener("DOMContentLoaded", function() {
         const data = JSON.parse(message.toString());
         console.log('Message arrived:', data);
 
-        // Update the radar chart with the new data
-        radarChart.data.datasets[0].data = [data.temperature, data.humidity, data.soilMoisture];
-        radarChart.update();
-
         // Update the displayed values
         if (document.getElementById('temp-value')) {
             document.getElementById('temp-value').textContent = data.temperature !== undefined ? data.temperature : 'N/A';
