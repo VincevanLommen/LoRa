@@ -3,36 +3,10 @@ document.addEventListener("DOMContentLoaded", function() {
     const humidityCanvas = document.getElementById('humidityChart').getContext('2d');
     const soilMoistureCanvas = document.getElementById('soilMoistureChart').getContext('2d');
     const extraCanvas = document.getElementById('extraChart').getContext('2d');
-
-    function createChart(canvas, label, data) {
-        return new Chart(canvas, {
-            type: 'line',
-            data: {
-                labels: data.map(entry => entry.Datum),
-                datasets: [{
-                    label: label,
-                    data: data.map(entry => entry.Temp),
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    x: {
-                        type: 'time',
-                        time: {
-                            unit: 'hour'
-                        }
-                    },
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-    }
+    let chart;
 
     function fetchDataAndCreateCharts() {
+        console.log(`Fetching data`);
         fetch('fetch_recent_data.php')
             .then(response => {
                 if (!response.ok) {
@@ -45,6 +19,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 createChart(temperatureCanvas, 'Temperatuur', data);
                 createChart(humidityCanvas, 'Luchtvochtigheid', data);
                 createChart(soilMoistureCanvas, 'Grondvochtigheid', data);
+
+                if (chart) {
+                    chart.destroy();
+                }
 
                 // Extra chart example
                 new Chart(extraCanvas, {
@@ -77,6 +55,6 @@ document.addEventListener("DOMContentLoaded", function() {
             .catch(error => console.error('Error fetching recent data:', error));
     }
 
-    fetchDataAndCreateCharts();
-    setInterval(fetchDataAndCreateCharts, 1000); // Fetch data every minute
+    // Fetch and display data for the default selected range on page load
+    fetchDataAndCreateCharts(dataRangeSelect.value);
 });

@@ -3,8 +3,8 @@
 # Declare the variables
 HOST=192.168.0.103
 TOPIC=LoRa/readings
-SLEEP=1  # Adjust sleep time as needed
-PERIOD=60  # Period of the sine wave in seconds
+SLEEP=5  # Adjust sleep time as needed
+PERIOD=1000  # Period of the sine wave in seconds
 
 # Start the script
 echo "Start of Transmission: sending to $HOST on Topic $TOPIC"

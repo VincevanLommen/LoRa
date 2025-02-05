@@ -14,9 +14,9 @@ if ($conn->connect_error) {
     die("Verbinding mislukt: " . $conn->connect_error);
 }
 
-$sql = "SELECT * FROM `LoRa` WHERE Datum >= NOW() - INTERVAL 1 DAY ORDER BY Datum ASC";
-$result = $conn->query($sql);
+$sql = "SELECT * FROM `LoRa` WHERE Datum >= NOW() - INTERVAL 1 HOUR ORDER BY Datum ASC";
 
+$result = $conn->query($sql);
 if ($result === false) {
     echo json_encode(['error' => 'Query failed']);
     $conn->close();
