@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const tempData = [];
     const humidityData = [];
     const soilMoistureData = [];
-    const labels = [];
+    const labels = ['Temperatuur', 'Luchtvochtigheid', 'Grondvochtigheid'];
     let temperatureChart, humidityChart, soilMoistureChart, extraChart;
 
     function initializeCharts() {
@@ -20,78 +20,85 @@ document.addEventListener("DOMContentLoaded", function() {
         const extraCanvas = document.getElementById('extraChart').getContext('2d');
 
         temperatureChart = new Chart(temperatureCanvas, {
-            type: 'line',
+            type: 'radar',
             data: {
                 labels: labels,
                 datasets: [{
                     label: 'Temperatuur',
                     data: tempData,
                     borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
                     borderWidth: 1
                 }]
             },
             options: {
                 scales: {
-                    x: { type: 'time', time: { unit: 'minute' } },
-                    y: { beginAtZero: true }
+                    r: {
+                        beginAtZero: true
+                    }
                 }
             }
         });
 
         humidityChart = new Chart(humidityCanvas, {
-            type: 'line',
+            type: 'radar',
             data: {
                 labels: labels,
                 datasets: [{
                     label: 'Luchtvochtigheid',
                     data: humidityData,
                     borderColor: 'rgba(153, 102, 255, 1)',
+                    backgroundColor: 'rgba(153, 102, 255, 0.2)',
                     borderWidth: 1
                 }]
             },
             options: {
                 scales: {
-                    x: { type: 'time', time: { unit: 'minute' } },
-                    y: { beginAtZero: true }
+                    r: {
+                        beginAtZero: true
+                    }
                 }
             }
         });
 
         soilMoistureChart = new Chart(soilMoistureCanvas, {
-            type: 'line',
+            type: 'radar',
             data: {
                 labels: labels,
                 datasets: [{
                     label: 'Grondvochtigheid',
                     data: soilMoistureData,
                     borderColor: 'rgba(255, 159, 64, 1)',
+                    backgroundColor: 'rgba(255, 159, 64, 0.2)',
                     borderWidth: 1
                 }]
             },
             options: {
                 scales: {
-                    x: { type: 'time', time: { unit: 'minute' } },
-                    y: { beginAtZero: true }
+                    r: {
+                        beginAtZero: true
+                    }
                 }
             }
         });
 
         extraChart = new Chart(extraCanvas, {
-            type: 'bar',
+            type: 'radar',
             data: {
                 labels: labels,
                 datasets: [{
                     label: 'Extra Data',
                     data: tempData,
-                    backgroundColor: 'rgba(153, 102, 255, 0.2)',
                     borderColor: 'rgba(153, 102, 255, 1)',
+                    backgroundColor: 'rgba(153, 102, 255, 0.2)',
                     borderWidth: 1
                 }]
             },
             options: {
                 scales: {
-                    x: { type: 'time', time: { unit: 'minute' } },
-                    y: { beginAtZero: true }
+                    r: {
+                        beginAtZero: true
+                    }
                 }
             }
         });
@@ -101,25 +108,18 @@ document.addEventListener("DOMContentLoaded", function() {
         const data = JSON.parse(message.toString());
         console.log('Message arrived:', data);
 
-        const currentTime = new Date().toLocaleTimeString();
-
-        labels.push(currentTime);
+        // Push the latest data to the arrays
         tempData.push(data.temperature);
         humidityData.push(data.humidity);
         soilMoistureData.push(data.soilMoisture);
 
-        if (labels.length > 30) {
-            labels.shift();
-            tempData.shift();
-            humidityData.shift();
-            soilMoistureData.shift();
-        }
-
+        // Update the charts
         temperatureChart.update();
         humidityChart.update();
         soilMoistureChart.update();
         extraChart.update();
 
+        // Update the displayed values
         if (document.getElementById('temp-value')) {
             document.getElementById('temp-value').textContent = data.temperature !== undefined ? data.temperature : 'N/A';
         }
@@ -133,6 +133,7 @@ document.addEventListener("DOMContentLoaded", function() {
             document.getElementById('rain-value').textContent = data.rain !== undefined ? data.rain : 'N/A';
         }
 
+        // Save the data to the server
         fetch('save_data.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -143,5 +144,4 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     initializeCharts();
-
 });
