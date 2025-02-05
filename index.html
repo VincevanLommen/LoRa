@@ -10,7 +10,29 @@
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0"></script>
     <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
     <script src="./mqtt-client.js"></script>
-    
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        main {
+            flex: 1;
+        }
+        footer {
+            background-color: #f8f8f8;
+            text-align: center;
+            padding: 10px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
 </head>
 
 <body>
@@ -44,13 +66,7 @@
                 <canvas id="temperatureChart" width="400" height="200" class="graphs"></canvas>
                 <canvas id="humidityChart" width="400" height="200" class="graphs"></canvas>
                 <canvas id="soilMoistureChart" width="400" height="200" class="graphs"></canvas>
-            </div>
-        </section>
-
-        <section id="extra-graph" class="Title">
-            <h2>Extra Grafiek</h2>
-            <div id="extra-chart-container">
-                <canvas id="extraChart" width="400" height="200"></canvas>
+                <canvas id="rainChart" width="400" height="200" class="graphs"></canvas> <!-- Nieuwe grafiek voor regen -->
             </div>
         </section>
     </main>

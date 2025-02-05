@@ -1,9 +1,9 @@
 /*shared colors*/
 :root {
-    --accent-color: #bebebe;
-    --background-color: #d3d3d3;
-    --button-color: #4b4b4b;
-  }
+  --accent-color: #bebebe;
+  --background-color: #d3d3d3;
+  --button-color: #4b4b4b;
+}
 
 /*|| GENERAL */
 
@@ -15,29 +15,36 @@ body {
   background-color: var(--background-color);
   margin: 0;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 /* every screen to center */
-main{
+main {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
+  flex: 1;
   margin-top: -10px;
 }
 
 /*copyright stuff*/
-footer{
-  position:absolute;
-  bottom:0;
-  margin-left: 10px;
+footer {
+  background-color: #f8f8f8;
+  text-align: center;
+  padding: 10px 0;
+  position: relative;
+  bottom: 0;
+  width: 100%;
 }
 
 /*|| HEADING */
 
 /*button + line*/
-.navButton{
+.navButton {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -46,7 +53,7 @@ footer{
 }
 
 /*button to go to other page*/
-.navButton button{
+.navButton button {
   display: inline-flex;
   padding: 5px;
   width: auto;
@@ -71,31 +78,31 @@ footer{
 
 /*||main title  */
 
-.Title h2{
+.Title h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.Title .timeSelect{
-  display: flex;
+.Title .timeSelect {
+  display: inline;
   align-self: center;
-  flex-direction: row;
   padding: 5px;
   width: auto;
   border-radius: 25px;
 }
 
 /*||history title  */
-.Title .graphs{
+.Title .graphs {
   border-style: solid;
   border-radius: 50px;
   border-color: var(--accent-color);
   padding: 15px;
-  margin-bottom: 25px;
+  margin-bottom: 15px;
+  margin-top: 10px;
 }
 
-.Title .titleBlock{
+.Title .titleBlock {
   border-style: solid;
   border-radius: 50px;
   border-color: var(--accent-color);

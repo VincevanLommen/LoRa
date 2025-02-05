@@ -10,14 +10,16 @@ document.addEventListener("DOMContentLoaded", function() {
     const tempData = [];
     const humidityData = [];
     const soilMoistureData = [];
+    const rainData = [];
     const labels = [];
-    let temperatureChart, humidityChart, soilMoistureChart, extraChart;
+
+    let temperatureChart, humidityChart, soilMoistureChart, rainChart;
 
     function initializeCharts() {
         const temperatureCanvas = document.getElementById('temperatureChart').getContext('2d');
         const humidityCanvas = document.getElementById('humidityChart').getContext('2d');
         const soilMoistureCanvas = document.getElementById('soilMoistureChart').getContext('2d');
-        const extraCanvas = document.getElementById('extraChart').getContext('2d');
+        const rainCanvas = document.getElementById('rainChart').getContext('2d');
 
         temperatureChart = new Chart(temperatureCanvas, {
             type: 'line',
@@ -102,16 +104,17 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
 
-        extraChart = new Chart(extraCanvas, {
-            type: 'bar',
+        rainChart = new Chart(rainCanvas, {
+            type: 'line',
             data: {
                 labels: labels,
                 datasets: [{
-                    label: 'Extra Data',
-                    data: tempData,
-                    backgroundColor: 'rgba(153, 102, 255, 0.2)',
-                    borderColor: 'rgba(153, 102, 255, 1)',
-                    borderWidth: 1
+                    label: 'Regen',
+                    data: rainData,
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderWidth: 1,
+                    fill: false
                 }]
             },
             options: {
@@ -139,11 +142,12 @@ document.addEventListener("DOMContentLoaded", function() {
                     tempData.push(entry.Temp);
                     humidityData.push(entry.Vocht);
                     soilMoistureData.push(entry.GrondVocht);
+                    rainData.push(entry.Regen);
                 });
                 temperatureChart.update();
                 humidityChart.update();
                 soilMoistureChart.update();
-                extraChart.update();
+                rainChart.update();
             })
             .catch(error => console.error('Error fetching recent data:', error));
     }
@@ -158,18 +162,20 @@ document.addEventListener("DOMContentLoaded", function() {
         tempData.push(data.temperature);
         humidityData.push(data.humidity);
         soilMoistureData.push(data.soilMoisture);
+        rainData.push(data.rain);
 
         if (labels.length > 30) {
             labels.shift();
             tempData.shift();
             humidityData.shift();
             soilMoistureData.shift();
+            rainData.shift();
         }
 
         temperatureChart.update();
         humidityChart.update();
         soilMoistureChart.update();
-        extraChart.update();
+        rainChart.update();
 
         if (document.getElementById('temp-value')) {
             document.getElementById('temp-value').textContent = data.temperature !== undefined ? data.temperature : 'N/A';
