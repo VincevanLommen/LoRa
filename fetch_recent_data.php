@@ -15,17 +15,17 @@ if ($conn->connect_error) {
 }
 
 $sql = "SELECT * FROM `LoRa` WHERE Datum >= NOW() - INTERVAL 1 HOUR ORDER BY Datum ASC";
-
 $result = $conn->query($sql);
-if ($result === false) {
-    echo json_encode(['error' => 'Query failed']);
-    $conn->close();
-    exit;
+
+if ($result->num_rows > 0) {
+    $data = [];
+    while ($row = $result->fetch_assoc()) {
+        $data[] = $row;
+    }
+    echo json_encode($data);
+} else {
+    echo json_encode([]);
 }
-
-$data = $result->fetch_all(MYSQLI_ASSOC);
-
-echo json_encode($data);
 
 $conn->close();
 ?>

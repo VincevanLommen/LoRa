@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", function() {
     const humidityData = [];
     const soilMoistureData = [];
     const labels = [];
-
     let temperatureChart, humidityChart, soilMoistureChart, extraChart;
 
     function initializeCharts() {
@@ -131,6 +130,24 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
+    function fetchRecentData() {
+        fetch('fetch_recent_data.php')
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(entry => {
+                    labels.push(new Date(entry.Datum));
+                    tempData.push(entry.Temp);
+                    humidityData.push(entry.Vocht);
+                    soilMoistureData.push(entry.GrondVocht);
+                });
+                temperatureChart.update();
+                humidityChart.update();
+                soilMoistureChart.update();
+                extraChart.update();
+            })
+            .catch(error => console.error('Error fetching recent data:', error));
+    }
+
     client.on('message', function(topic, message) {
         const data = JSON.parse(message.toString());
         console.log('Message arrived:', data);
@@ -177,4 +194,5 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     initializeCharts();
+    fetchRecentData();
 });
