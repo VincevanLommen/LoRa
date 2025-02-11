@@ -21,16 +21,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Historische Data - LoRa Project</title>
+    
+    <!-- Link naar de stylesheet voor de pagina -->
     <link rel="stylesheet" href="./styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0"></script>    
-    <script src="./fetch-historical-data.js" defer></script>
 
-    <script src="HistroryLogMqtt.js" defer></script>
+    <!-- Invoegen van externe bibliotheken voor grafieken en MQTT -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0"></script>
     <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+    
+    <!-- Invoegen van lokale JavaScript-bestanden voor data-verwerking -->
+    <script src="./fetch-historical-data.js" defer></script>
+    <script src="HistroryLogMqtt.js" defer></script>
 </head>
 
 <body>
+    <!-- Header sectie met navigatieknoppen -->
     <header class="navButton">
         <div class="actueleButton">
             <a href="index.html"><button>
@@ -42,10 +48,12 @@
         </div>
     </header>
 
+    <!-- Hoofdinhoud van de pagina -->
     <main>
         <div id="historical-data" class="Title">
             <h2>Historische Waarden</h2>
             <div>
+                <!-- Dropdown menu voor het kiezen van de data range -->
                 <label for="data-range">Kies Data Range:</label>
                 <select id="data-range" class="timeSelect">
                     <option value="24hr">Laatste 24 uur</option>
@@ -53,12 +61,14 @@
                     <option value="month">Actuele Maand</option>
                 </select>
             </div>
+            <!-- Weergeven van de grafiek -->
             <div id="historical-graphs">
                 <canvas id="chart" width="1200" height="500" class="graphs"></canvas>
             </div>
         </div>
     </main>
 
+    <!-- Footer -->
     <footer>
         <p>&copy; 2025 LoRa Project VincevanLommen & WoutVVD & E-Wouter & Japser</p>
     </footer>
