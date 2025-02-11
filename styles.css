@@ -7,8 +7,18 @@
 
 /*|| GENERAL */
 
+html, body{
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 /*body*/
 body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
   line-height: 1.5;

@@ -1,3 +1,21 @@
+<!-- ----------------------------------------------------------------------------
+# Main Pagina
+# 
+# Wout Vanvoorden en Vince Van Lommen
+# 2025
+# 
+# Beschrijving:
+# Dit is onze main pagina van de website. Het logt data in een
+# database en ontvangt data van een MQTT broker.
+#
+# Functies:
+# - Verbinden met de MQTT broker door het gebruik van web sockets
+# - Ontvangen van data van de MQTT broker
+# - Loggen van data in de database
+# - Verwerken en weergeven van data aan de gebruiker
+# 
+# ---------------------------------------------------------------------------- -->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,6 +49,10 @@
             position: relative;
             bottom: 0;
             width: 100%;
+        }
+        #graphs canvas {
+            width: 100% !important;
+            height: auto !important;
         }
     </style>
 </head>
