@@ -1,3 +1,23 @@
+/*
+# ----------------------------------------------------------------------------
+# Fetch Historical Data Script
+# 
+# Vince Van Lommen
+# 2025
+# 
+# Beschrijving:
+# Dit script haalt historische sensorgegevens op van de server en visualiseert
+# deze in een grafiek op de webpagina. Het maakt gebruik van fetch-aanvragen
+# om gegevens op te halen en Chart.js om deze gegevens in een lijn grafiek weer te geven.
+#
+# Functies:
+# - Ophalen van historische sensorgegevens via fetch-aanvragen
+# - Visualiseren van sensorgegevens in een lijn grafiek
+# - Dynamisch bijwerken van grafieken op basis van de geselecteerde tijdsperiode
+# ----------------------------------------------------------------------------
+*/
+
+
 document.addEventListener("DOMContentLoaded", function() {
     const dataRangeSelect = document.getElementById('data-range');
     const canvas = document.getElementById('chart').getContext('2d');

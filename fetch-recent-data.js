@@ -1,3 +1,22 @@
+/*
+# ----------------------------------------------------------------------------
+# Fetch Recent Data Script
+# 
+# Vince Van Lommen
+# 2025
+# 
+# Beschrijving:
+# Dit script haalt recente sensorgegevens op van de server en visualiseert
+# deze in grafieken op de webpagina. Het maakt gebruik van fetch-aanvragen
+# om gegevens op te halen en Chart.js om deze gegevens in grafieken weer te geven.
+#
+# Functies:
+# - Ophalen van recente sensorgegevens via fetch-aanvragen
+# - Visualiseren van sensorgegevens in verschillende grafieken
+# ----------------------------------------------------------------------------
+*/
+
+
 document.addEventListener("DOMContentLoaded", function() {
     const temperatureCanvas = document.getElementById('temperatureChart').getContext('2d');
     const humidityCanvas = document.getElementById('humidityChart').getContext('2d');

@@ -1,3 +1,16 @@
+/*
+# ----------------------------------------------------------------------------
+# Stylesheet voor LoRa Project
+# 
+# Wout Vanvoorden
+# 2025
+# 
+# Beschrijving:
+# Dit bestand bevat de CSS-stijlen voor de verschillende pagina's van
+# de website. Het definieert de opmaak en lay-out van de elementen.
+# ----------------------------------------------------------------------------
+*/
+
 /*shared colors*/
 :root {
   --accent-color: #bebebe;

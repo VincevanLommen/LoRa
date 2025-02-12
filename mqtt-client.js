@@ -2,7 +2,7 @@
 # ----------------------------------------------------------------------------
 # MQTT Client Script
 # 
-# Wout Vanvoorden & Vince Van Lommen
+# Vince Van Lommen
 # 2025
 # 
 # Beschrijving:

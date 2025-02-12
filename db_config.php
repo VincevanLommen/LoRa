@@ -1,8 +1,8 @@
 <?php
-$servername = "192.168.0.103";
-$username = "ReadWrite";
-$password = "ReadWrite";
-$dbname = "LoRa";
+$servername = "192.168.0.103"; //ip for database
+$username = "ReadWrite";       //username databae
+$password = "ReadWrite";       //password database
+$dbname = "LoRa";              //tbl name database
 
 // Maak verbinding met de database
 $conn = new mysqli($servername, $username, $password, $dbname);

@@ -1,10 +1,33 @@
+/*
+# ----------------------------------------------------------------------------
+# Main JavaScript File
+# 
+# Vince Van Lommen
+# 2025
+# 
+# Beschrijving:
+# Dit script maakt verbinding met een MQTT-broker en toont sensor
+# data in real-time. Het haalt ook historische data op en visualiseert
+# deze in grafieken.
+#
+# Functies:
+# - Verbinding maken met de MQTT-broker
+# - Abonneren op het LoRa readings-topic
+# - Real-time sensor data tonen
+# - Ophalen en visualiseren van historische data
+# ----------------------------------------------------------------------------
+*/
+
+
 document.addEventListener("DOMContentLoaded", function() {
+   
+   
     // Real-time MQTT data
-    const client = mqtt.connect('ws://192.168.0.103:9001');
+    const client = mqtt.connect('ws://192.168.0.103:9001');// BELANGRIJK!! verander ip van broker!!
 
     client.on('connect', function() {
         console.log('Connected to MQTT broker');
-        client.subscribe('LoRa/readings');
+        client.subscribe('LoRa/readings');// BELANGRIJK!! vernader de topic van de broker!!
     });
 
     client.on('message', function(topic, message) {
