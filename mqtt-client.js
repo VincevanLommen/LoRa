@@ -1,10 +1,35 @@
+/*
+# ----------------------------------------------------------------------------
+# MQTT Client Script
+# 
+# Wout Vanvoorden & Vince Van Lommen
+# 2025
+# 
+# Beschrijving:
+# Dit script maakt verbinding met een MQTT-broker en toont sensor
+# data in verschillende grafieken.
+#
+# De broker verwacht data te ontvangen in het formaat {"temperature": x, "humidity": y, "rain": z, "soilMoisture": q}
+#
+# Functies:
+# - Verbinding maken met de MQTT-broker
+# - Abonneren op het LoRa readings-topic
+# - Sensor data tonen in grafieken
+# ----------------------------------------------------------------------------
+*/
+
+
+// Variables for MQTT broker and topic
+const brokerUrl = 'ws://192.168.0.103:9001'; //IP van broker
+const topic = 'LoRa/readings';//Topic van broker
+
 document.addEventListener("DOMContentLoaded", function() {
     // Connect to MQTT broker
-    const client = mqtt.connect('ws://192.168.0.103:9001');
+    const client = mqtt.connect(brokerUrl);
 
     client.on('connect', function() {
         console.log('Connected to MQTT broker');
-        client.subscribe('LoRa/readings');
+        client.subscribe(topic);
     });
 
     const tempData = [];
