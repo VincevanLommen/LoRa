@@ -7,12 +7,6 @@
 
 /*|| GENERAL */
 
-html, body{
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
 /*body*/
 body {
   display: flex;
@@ -21,8 +15,7 @@ body {
   font-size: 16px;
   line-height: 1.5;
   background-color: var(--background-color);
-  margin: 0;
-  padding: 0;
+  min-height: 100vh;
 }
 
 /* every screen to center */
@@ -31,9 +24,10 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  /* flex: 1; */
-  margin-top: -10px;
+  width:95%;
+  padding: 20px;
+  flex: 1;
+  margin: 0 auto;
 }
 
 /*copyright stuff*/
@@ -105,6 +99,8 @@ footer {
   padding: 15px;
   margin-bottom: 15px;
   margin-top: 10px;
+  width: 100%;
+  height: auto;
 }
 
 .Title .titleBlock {
@@ -113,5 +109,5 @@ footer {
   border-color: var(--accent-color);
   padding: 15px;
   margin-top: 25px;
-  width: 600px;
+  width: 100%;
 }
