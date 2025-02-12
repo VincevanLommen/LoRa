@@ -34,7 +34,7 @@ Dit PHP-bestand haalt historische gegevens op uit de database op basis van de ge
 Dit JavaScript-bestand logt historische gegevens die zijn ontvangen via MQTT en werkt de grafieken bij op de `geschiedenis.html` pagina. Het zorgt voor de verwerking en weergave van historische gegevens, zodat gebruikers een compleet overzicht hebben van de sensorgegevens over tijd. Het bestand maakt gebruik van de MQTT.js bibliotheek om verbinding te maken met de broker en de Chart.js bibliotheek om de gegevens in grafieken weer te geven. Het bevat logica om de ontvangen gegevens te verwerken en bij te werken.
 
 ### `bash_script.sh`
-Dit bash-script genereert sinusgolven voor temperatuurwaarden en willekeurige waarden voor andere sensoren en stuurt deze naar de MQTT-broker om de gegevens te simuleren. Dit is handig voor het testen en ontwikkelen van de functionaliteit van het systeem zonder afhankelijk te zijn van echte sensorgegevens. Het script genereert periodieke en willekeurige gegevens en stuurt deze naar de MQTT-broker om de gegevensstroom te simuleren. Het bevat shell-commando's om de gegenereerde gegevens te publiceren naar de MQTT-broker en maakt gebruik van de `mosquitto_pub` tool voor het versturen van de MQTT-berichten.
+Dit bash-script genereert sinusgolven voor alle waarden te testen. Dit kan gebruikt worden als het zendstation niet operationeel is om de website te testen.
 
 ## Installatie
 
@@ -56,18 +56,16 @@ Dit bash-script genereert sinusgolven voor temperatuurwaarden en willekeurige wa
     sudo apt-get install php libapache2-mod-php php-mysql
     sudo apt-get install phpmyadmin
     ```
-5. Zorg ervoor dat er een database is aangemaakt in PHPMyAdmin onder de naam `LoRa` met de juiste tabelnamen.
+5. Zorg ervoor dat er een database is aangemaakt in PHPMyAdmin onder de naam `LoRa` met de volgende tabelnamen:
+    - `sensor_data`:
+        - `Datum`
+        - `Temp`
+        - `Vocht`
+        - `Regen`
+        - `GrondVocht`
 
-6. Start je webserver en bezoek `index.html` en `geschiedenis.html` om de gegevens te bekijken:
-    ```sh
-    sudo service apache2 start
-    ```
 
 ## Gebruik
 
-1. Bezoek `index.html` om de actuele sensorgegevens in real-time te bekijken.
+1. Bezoek het IP van de host om de actuele sensorgegevens in real-time te bekijken.
 2. Bezoek `geschiedenis.html` om de historische sensorgegevens over verschillende tijdsperioden te bekijken.
-3. Voer het bash-script uit om gesimuleerde gegevens naar de MQTT-broker te sturen:
-    ```sh
-    ./bash_script.sh
-    ```
