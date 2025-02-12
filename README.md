@@ -18,6 +18,9 @@ Dit bestand bevat de CSS-stijlen die worden gebruikt om de verschillende HTML-pa
 ### `mqtt-client.js`
 Dit JavaScript-bestand verbindt met de MQTT-broker, ontvangt real-time sensorgegevens en werkt de grafieken bij op de `index.html` pagina. Het zorgt ervoor dat de gegevens in real-time worden weergegeven en bijgewerkt. Dit bestand bevat de logica voor het ontvangen van de sensorgegevens via MQTT en het bijwerken van de grafieken met de nieuwste gegevens. Het maakt gebruik van de MQTT.js bibliotheek om verbinding te maken met de broker en de Chart.js bibliotheek om de gegevens in grafieken weer te geven.
 
+### `db_config.php`
+Hierin kan de inlog data van de databse worden ingegeven, ip, username etc...
+
 ### `fetch-historical-data.js`
 Dit JavaScript-bestand haalt historische gegevens op van de server en werkt de grafieken bij op de `geschiedenis.html` pagina. Het zorgt ervoor dat de historische gegevens correct worden weergegeven op basis van de door de gebruiker geselecteerde tijdsperiode. Hierdoor kunnen gebruikers eenvoudig historische trends en patronen analyseren. Het bestand maakt gebruik van fetch-aanvragen om gegevens van de server op te halen en de Chart.js bibliotheek om de gegevens in grafieken weer te geven.
 
