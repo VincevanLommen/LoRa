@@ -57,7 +57,7 @@ Dit bash-script genereert sinusgolven voor alle waarden te testen. Dit kan gebru
     sudo apt-get install phpmyadmin
     ```
 5. Zorg ervoor dat er een database is aangemaakt in PHPMyAdmin onder de naam `LoRa` met de volgende tabelnamen:
-    - `sensor_data`:
+    - `LoRa`:
         - `Datum`
         - `Temp`
         - `Vocht`
