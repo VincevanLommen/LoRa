@@ -18,10 +18,9 @@
 # ----------------------------------------------------------------------------
 */
 
-
 // Variables for MQTT broker and topic
 const brokerUrl = 'ws://192.168.0.103:9001'; //IP van broker
-const topic = 'LoRa/readings';//Topic van broker
+const topic = 'LoRa/readings'; //Topic van broker
 
 document.addEventListener("DOMContentLoaded", function() {
     // Connect to MQTT broker
@@ -178,50 +177,70 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     client.on('message', function(topic, message) {
-        const data = JSON.parse(message.toString());
-        console.log('Message arrived:', data);
+        let data;
+        try {
+            data = JSON.parse(message.toString());
 
-        const currentTime = new Date();
+            // Validate received data
+            if (
+                typeof data.temperature === 'number' &&
+                typeof data.humidity === 'number' &&
+                typeof data.soilMoisture === 'number' &&
+                typeof data.rain === 'number' &&
+                data.humidity >= 0 && data.humidity <= 100 &&
+                data.soilMoisture >= 0 && data.soilMoisture <= 100 &&
+                data.rain >= 0
+            ) {
+                console.log('Message arrived:', data);
 
-        labels.push(currentTime);
-        tempData.push(data.temperature);
-        humidityData.push(data.humidity);
-        soilMoistureData.push(data.soilMoisture);
-        rainData.push(data.rain);
+                const currentTime = new Date();
 
-        if (labels.length > 30) {
-            labels.shift();
-            tempData.shift();
-            humidityData.shift();
-            soilMoistureData.shift();
-            rainData.shift();
+                labels.push(currentTime);
+                tempData.push(data.temperature);
+                humidityData.push(data.humidity);
+                soilMoistureData.push(data.soilMoisture);
+                rainData.push(data.rain);
+
+                if (labels.length > 30) {
+                    labels.shift();
+                    tempData.shift();
+                    humidityData.shift();
+                    soilMoistureData.shift();
+                    rainData.shift();
+                }
+
+                temperatureChart.update();
+                humidityChart.update();
+                soilMoistureChart.update();
+                rainChart.update();
+
+                if (document.getElementById('temp-value')) {
+                    document.getElementById('temp-value').textContent = data.temperature !== undefined ? data.temperature : 'N/A';
+                }
+                if (document.getElementById('humidity-value')) {
+                    document.getElementById('humidity-value').textContent = data.humidity !== undefined ? data.humidity : 'N/A';
+                }
+                if (document.getElementById('soil-moisture-value')) {
+                    document.getElementById('soil-moisture-value').textContent = data.soilMoisture !== undefined ? data.soilMoisture : 'N/A';
+                }
+                if (document.getElementById('rain-value')) {
+                    document.getElementById('rain-value').textContent = data.rain !== undefined ? data.rain : 'N/A';
+                }
+
+                fetch('save_data.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                }).then(response => response.text())
+                .then(result => console.log('Data saved:', result))
+                .catch(error => console.error('Error saving data:', error));
+            } else {
+                console.error('Invalid data format or values out of range:', data);
+            }
+        } catch (e) {
+            console.error('Invalid JSON:', message.toString());
+            // Ignore invalid JSON data
         }
-
-        temperatureChart.update();
-        humidityChart.update();
-        soilMoistureChart.update();
-        rainChart.update();
-
-        if (document.getElementById('temp-value')) {
-            document.getElementById('temp-value').textContent = data.temperature !== undefined ? data.temperature : 'N/A';
-        }
-        if (document.getElementById('humidity-value')) {
-            document.getElementById('humidity-value').textContent = data.humidity !== undefined ? data.humidity : 'N/A';
-        }
-        if (document.getElementById('soil-moisture-value')) {
-            document.getElementById('soil-moisture-value').textContent = data.soilMoisture !== undefined ? data.soilMoisture : 'N/A';
-        }
-        if (document.getElementById('rain-value')) {
-            document.getElementById('rain-value').textContent = data.rain !== undefined ? data.rain : 'N/A';
-        }
-
-        fetch('save_data.php', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-        }).then(response => response.text())
-        .then(result => console.log('Data saved:', result))
-        .catch(error => console.error('Error saving data:', error));
     });
 
     initializeCharts();
