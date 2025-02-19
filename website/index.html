@@ -1,0 +1,76 @@
+<!-- ----------------------------------------------------------------------------
+# Main Pagina
+# 
+# Wout Vanvoorden en Vince Van Lommen
+# 2025
+# 
+# Beschrijving:
+# Dit is onze main pagina van de website. Het logt data in een
+# database en ontvangt data van een MQTT broker.
+#
+# Functies:
+# - Verbinden met de MQTT broker door het gebruik van web sockets
+# - Ontvangen van data van de MQTT broker
+# - Loggen van data in de database
+# - Verwerken en weergeven van data aan de gebruiker
+# 
+# ---------------------------------------------------------------------------- -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actuele Data - LoRa Project</title>
+    <link rel="stylesheet" href="./styles.css">  
+    <!--script for charts--> 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0"></script>
+    <!--script for mqtt broker--> 
+    <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+    <script src="./mqtt-client.js"></script>
+     <!--random css stuff-->
+</head>
+
+<body>
+    <header class="navButton"> 
+        <div class="geschButton">
+            <a href="geschiedenis.html"><button> <!--button at top to other page-->
+                <span>Geschiedenis</span>
+            </button></a>
+        </div>
+        <div class="topbar">  <!--the line under it-->
+            <div></div>
+        </div>
+    </header>
+
+    <main>
+        <section id="data-overview" class="Title">
+            <div class="titleBlock">
+                <h2>Actuele Data</h2>
+                <div id="sensor-data"> <!--box at the top with incoming data-->
+                    <p>Temperatuur: <span id="temp-value">N/A</span>°C</p>
+                    <p>Luchtvochtigheid: <span id="humidity-value">N/A</span>%</p>
+                    <p>Grondvochtigheid: <span id="soil-moisture-value">N/A</span>%</p>
+                    <p>Regen: <span id="rain-value">N/A</span>mm</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="data-graphs" class="Title">
+            <h2>Grafische Weergave</h2>
+            <div id="graphs"> <!--charts-->
+                <canvas id="temperatureChart" width="400" height="200" class="graphs"></canvas>
+                <canvas id="humidityChart" width="400" height="200" class="graphs"></canvas>
+                <canvas id="soilMoistureChart" width="400" height="200" class="graphs"></canvas>
+                <canvas id="rainChart" width="400" height="200" class="graphs"></canvas> <!-- Nieuwe grafiek voor regen -->
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 LoRa Project VincevanLommen & WoutVVD & E-Wouter & Japser</p>
+    </footer>
+</body>
+
+</html>
